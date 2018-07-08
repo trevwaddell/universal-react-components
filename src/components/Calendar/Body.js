@@ -18,7 +18,6 @@ export default ({ year, month }) => {
 };
 
 const styles = StyleSheet.create({
-  body: {},
   week: {
     flexDirection: "row"
   }

@@ -7,7 +7,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.app}>
-        <Calendar year={2018} month={7} />
+        <Calendar year={2018} month={0} />
       </View>
     );
   }

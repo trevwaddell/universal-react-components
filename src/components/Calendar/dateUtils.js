@@ -1,8 +1,4 @@
-Date.prototype.addDays = function(days) {
-  const date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-};
+import addDays from "date-fns/add_days";
 
 export const months = [
   "January",
@@ -20,10 +16,10 @@ export const months = [
 
 export const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-function chunkArray(myArray, chunk_size) {
+function chunkArray(arr, chunk_size) {
   let results = [];
-  while (myArray.length) {
-    results.push(myArray.splice(0, chunk_size));
+  while (arr.length) {
+    results.push(arr.splice(0, chunk_size));
   }
 
   return results;
@@ -43,15 +39,11 @@ function getCalMonthDays(month, year) {
       : monthEnd;
 
   let currentDate = start;
-  const first = start;
-  let count = 0;
 
   while (currentDate <= end) {
     calDays = [...calDays, currentDate];
-    currentDate = currentDate.addDays(1);
-    count++;
+    currentDate = addDays(currentDate, 1);
   }
-
   return calDays;
 }
 

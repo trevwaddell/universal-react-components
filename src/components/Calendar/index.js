@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import Header from "./Header";
-import Body from "./Body";
+import Day from "./Day";
+import { getCalendarWeeks } from "./dateUtils";
 
 class Calendar extends Component {
   constructor(props) {
@@ -15,10 +16,16 @@ class Calendar extends Component {
   }
 
   render() {
+    const { year, month } = this.state;
+
     return (
       <View style={styles.calendar}>
-        <Header month={this.state.month} year={this.state.year} />
-        <Body month={this.state.month} year={this.state.year} />
+        <Header month={month} year={year} />
+        {getCalendarWeeks(year, month).map(week => (
+          <View style={styles.week} key={week}>
+            {week.map(day => <Day key={day} day={day} />)}
+          </View>
+        ))}
       </View>
     );
   }
@@ -33,6 +40,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.8,
     shadowRadius: 5
+  },
+  week: {
+    flexDirection: "row"
   }
 });
 
